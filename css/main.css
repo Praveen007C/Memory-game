@@ -1,0 +1,363 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 0%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+h1 {
+    
+        font-weight: bold;
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: #8c02cc;
+    
+}
+
+/* 
+ * style for deck
+ */
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    background: #02b3e4;
+    font-size: 33px;
+    cursor: default;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 600px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    float: left;
+    margin: 0 5px 0 0;
+    padding-left: 0;
+}
+
+.score-panel .stars li {
+    display: inline-block;
+    list-style: none;
+}
+
+.score-panel .stars .hidestar {
+    color: #ffffff;
+}
+
+.score-panel .timer {
+    margin: 0 0 0 15px;
+}
+
+
+
+/*
+ * popup styles 
+ */
+.popup {
+    visibility: hidden;
+}
+
+.popup-show {
+    visibility: visible;
+    position: fixed;
+    z-index: 2;
+    margin: 0 auto;
+    height: 481px;
+    width: 523px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+
+.overlay-show {
+    position: fixed;
+    /* Sit on top of the page content */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 1;
+    /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.play-again {
+    height: 30px;
+    width: 100px;
+    background: #20cca6;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check {
+    font-size: 3em;
+    font-weight: lighter;
+    color: #20cca6;
+}
+
+/* 
+ * responsive design in media queries 
+ */
+
+@media only screen and (max-width: 420px) {
+    header {
+        font-size: 0.8em;
+    }
+
+    .deck {
+        width: 330px;
+        min-height: 340px;
+        padding: 16px;
+        box-shadow: 6px 8px 10px 0 rgba(46, 61, 73, 0.5);
+    }
+
+    .deck .card {
+        height: 62px;
+        width: 62px;
+    }
+
+    .deck .card.open,
+    .deck .card.match {
+        font-size: 16px;
+    }
+
+    .score-panel {
+        width: 300px;
+        font-size: 0.8em;
+    }
+
+    .popup-show {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .popup-show h1 span {
+        display: block;
+        text-align: center;
+        margin: 10px 0 0 0;
+    }
+
+    .popup-show .score-result {
+        font-size: 12px;
+    }
+
+}
+
+@media only screen and (min-width: 421px) and (max-width: 768px) {
+    .deck {
+        width: 495px;
+        min-height: 510px;
+        padding: 20px;
+    }
+
+    .deck .card {
+        height: 94px;
+        width: 94px;
+    }
+
+    .deck .card.open,
+    .deck .card.match {
+        font-size: 24px;
+    }
+
+    .score-panel {
+        width: 450px;
+    }
+
+    .popup-show {
+        height: 361px;
+        width: 392px;
+    }
+
+    .popup-show h1 {
+        font-size: 2em;
+    }
+
+    .popup-show h1 span {
+        display: block;
+        text-align: center;
+        margin: 10px 0 0 0;
+    }
+
+    .popup-show .score-result {
+        font-size: 12px;
+    }
+
+}
+
+/* 
+ * css animation 
+ */
+
+/* source: https://codepen.io/codeams/pen/IuGxn */
+.bounce-in {
+    animation: bounceIn 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translate3d(0, 0, 0);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+
+    80% {
+        opacity: 1;
+        transform: scale(0.89);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+}
+
+/* source: https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+.shake {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.zoom-in {
+    animation: zoomIn 0.82s both;
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+
+/* style.css */
+
+.restart-btn {
+    background-color: #4CAF50;
+    /* green color */
+    color: #fff;
+    justify-content: center;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    /* rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* shadow effect */
+}
+
+.restart-btn:hover {
+    background-color: #047204;
+    /* darker green color on hover */
+}
+
+.restart-btn i {
+    margin-right: 5px;
+    /* add some space between icon and text */
+}
